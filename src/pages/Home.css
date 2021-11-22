@@ -1,0 +1,13 @@
+.Home-container{
+    background: url('../assets/images/background.jpg');
+    width: 100%;
+}
+.Home-movies{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: 0px auto;
+    text-align: center;
+}

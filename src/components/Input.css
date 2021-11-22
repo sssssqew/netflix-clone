@@ -1,0 +1,18 @@
+input{
+    all: unset;
+    margin: 10px;
+    width: 400px;
+    height: 50px;
+    border: 2px solid lightgreen;
+    border-radius: 15px;
+    text-align: left;
+    padding-left: 15px;
+    color: lightgreen;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+input::placeholder{
+    color: lightgreen;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
