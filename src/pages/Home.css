@@ -1,6 +1,7 @@
 .Home-container{
     background: url('../assets/images/background.jpg');
     width: 100%;
+    text-align: center;
 }
 .Home-movies{
     display: flex;
