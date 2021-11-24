@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 
 import { Input, Button } from 'components'
@@ -14,9 +14,15 @@ const Login = () => {
         name === 'id' ? setId(value) : setPassword(value)
         console.log(name, value)
     }
+    const isNotValid = (user) => {
+        console.log(user)
+        return user.id === '' || user.password === ''
+    }
     const handleLogin = () => {
+        // 사용자 정보가 있으니까 불러오기
         const user = JSON.parse(sessionStorage.getItem('user'))
-        if(id === user.id && password === user.password){
+
+        if(!isNotValid(user) && (id === user.id && password === user.password)){
             navigate('/home')
         }else{
             alert('You gaved wrong id or password !')

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Movie, Loading } from 'components'
+import { Link } from 'react-router-dom'
 
-import { Input, Button } from 'components'
+import { Movie, Loading, Input, Button } from 'components'
 import './Home.css'
 
 const Home = () => {
@@ -42,14 +42,21 @@ const Home = () => {
                         .sort( (a, b) => {
                             return (b.year - a.year) * isSorted;
                         })
-                        .map(movie => <Movie 
-                                        key={movie.id} 
+                        .map(movie =>
+                            <Link key={movie.id}  
+                                  to='/detail'
+                                  state={{ movie }} 
+                                  style={{ textDecoration: 'none', color: 'white'}}
+                            >
+                                
+                                <Movie 
                                         title={movie.title} 
                                         genres={movie.genres} 
                                         cover={movie.medium_cover_image} 
                                         summary={movie.summary}
                                         year={movie.year}
                                        />
+                            </Link> 
                                     )
 
     return (
