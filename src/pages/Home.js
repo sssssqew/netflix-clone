@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { Movie, Loading, Input, Button } from 'components'
+import { Movie, Loading, Input, Button, Menu } from 'components'
 import './Home.css'
 
 const Home = () => {
@@ -9,6 +9,10 @@ const Home = () => {
     const [movies, setMovies] = useState([])
     const [query, setQuery] = useState('')
     const [isSorted, setIsSorted] = useState(-1)
+    const navigate = useNavigate()
+
+    const likes = JSON.parse(sessionStorage.getItem('likes')) || {}
+    console.log(likes)
     
 
     useEffect( () => {
@@ -31,6 +35,16 @@ const Home = () => {
         setIsSorted(isSorted * -1)
     }
 
+    const updateLikes = (id) => {
+        const likes = JSON.parse(sessionStorage.getItem('likes')) || {}
+       
+        if(likes[id] === null || likes[id] === undefined){
+            likes[id] = 0
+        }
+        likes[id] += 1
+        sessionStorage.setItem('likes', JSON.stringify(likes))
+    }
+
     const homeUI = movies
                         .filter(movie => {
                             const title = movie.title.toLowerCase()
@@ -47,6 +61,7 @@ const Home = () => {
                                   to='/detail'
                                   state={{ movie }} 
                                   style={{ textDecoration: 'none', color: 'white'}}
+                                  onClick={() => updateLikes(movie.id)}
                             >
                                 
                                 <Movie 
@@ -55,16 +70,26 @@ const Home = () => {
                                         cover={movie.medium_cover_image} 
                                         summary={movie.summary}
                                         year={movie.year}
+                                        rating={movie.rating}
+                                        likes={likes[movie.id]}
                                        />
                             </Link> 
                                     )
 
+    const toRankPage = () => {
+        navigate('/recommend', { state: { movies }})
+    }
     return (
         <>
             {loading? <Loading/>: <div className='Home-container'>
-                                    <Input name='search' type='text' placeholder='Search movies ...' value={query} onChange={handleChange}/>
-                                    <Button handleClick={sortByYear}>정렬</Button>
-                                    <div className='Home-movies'>{homeUI}</div>
+                                    <Menu>
+                                        <Button handleClick={toRankPage}>Rank</Button>
+                                    </Menu>
+                                    <div className='Home-contents'>
+                                        <Input name='search' type='text' placeholder='Search movies ...' value={query} onChange={handleChange}/>
+                                        <Button handleClick={sortByYear}>정렬</Button>
+                                        <div className='Home-movies'>{homeUI}</div>
+                                    </div>
                                   </div>}
         </>
     )

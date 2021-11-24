@@ -1,0 +1,23 @@
+.Recommendation-container{
+    background: url('../assets/images/background.jpg');
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
+}
+.Recommendation-text{
+    color: #a9a9a9;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.first-text{
+    margin-top: 100px;
+}
+.second-text{
+    margin-top: 50px;
+}
+.Recommendation-bestmovies{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}

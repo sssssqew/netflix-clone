@@ -2,6 +2,11 @@
     background: url('../assets/images/background.jpg');
     width: 100%;
     text-align: center;
+    border: 1px solid black;
+}
+.Home-contents{
+    /* border: 5px solid orange; */
+    margin-top: 100px;
 }
 .Home-movies{
     display: flex;
