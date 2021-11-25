@@ -1,20 +1,43 @@
-import React, { useEffect } from 'react'
-import { Movie, Button, Menu } from 'components'
+import React, { useEffect, useState } from 'react'
+import { Movie, Button, Menu, Modal } from 'components'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import './Detail.css'
 
 const Detail = () => {
+    const [open, setOpen] = useState(false)
+
     // 사용자 정보 유무에 따른 페이지 접근 제한하기
     const navigateToRegister = useNavigate()
     const user = JSON.parse(sessionStorage.getItem('user'))
+
+    const openModal = () => {
+        setOpen(true)
+    }
+    const closeModal = () => {
+        setOpen(false)
+
+        // alert("Sorry ! You need to register first !")
+        navigateToRegister('/')
+    }
+
     if(!user){
         useEffect ( () => {
-            alert("Sorry ! You need to register first !")
-            navigateToRegister('/')
+            openModal()
         })
         
-        return <></>
+        return <>
+                    {/* 모달창 */}
+                    <Modal open={open}>
+                        <div className="header">-- Warning message --</div>
+                        <div className="body">
+                            "Sorry ! You need to register first !"
+                        </div>
+                        <div className="footer">
+                            <Button size="small" handleClick={closeModal}>Close</Button>
+                        </div>
+                    </Modal>
+                </>
     }
 
     

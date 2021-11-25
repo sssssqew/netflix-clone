@@ -7,3 +7,28 @@
     align-items: center;
     background: url('../assets/images/background.jpg');
 }
+
+/* 모달창 스타일링 */
+.header, .body, .footer{
+    padding: 5px;
+}
+.header{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.body{
+    font-size: 1rem;
+    margin: 20px;
+}
+.body input{
+    width: 60%;
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.footer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
