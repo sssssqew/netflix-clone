@@ -1,8 +1,10 @@
 .Home-container{
     background: url('../assets/images/background.jpg');
     width: 100%;
+    padding: 30px;
     text-align: center;
     border: 1px solid black;
+    position: relative;
 }
 .Home-contents{
     /* border: 5px solid orange; */
@@ -16,4 +18,31 @@
     width: 60%;
     margin: 0px auto;
     text-align: center;
+}
+.movie-item{
+    position: relative;
+}
+.movie-delete{
+    width: 50px;
+    height: 50px;
+    color: black;
+    background: transparent;
+    opacity: 0.6;
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.movie-delete:hover{
+    background: #a9a9a9;
+}
+.Home-entire{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
 }
