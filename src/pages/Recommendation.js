@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 
 import { Movie, Menu, Button } from 'components'
 import './Recommendation.css'
 
 const Recommendation = () => {
+    
+    // 사용자 정보 유무에 따른 페이지 접근 제한하기
+    const navigateToRegister = useNavigate()
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    if(!user){
+        useEffect ( () => {
+            alert("Sorry ! You need to register first !")
+            navigateToRegister('/')
+        })
+        
+        return <></>
+    }
+
+
     const location = useLocation()
     const { movies } = location.state
     console.log(movies)

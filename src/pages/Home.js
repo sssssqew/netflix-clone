@@ -5,6 +5,20 @@ import { Movie, Loading, Input, Button, Menu } from 'components'
 import './Home.css'
 
 const Home = () => {
+
+    // 사용자 정보 유무에 따른 페이지 접근 제한하기
+    const navigateToRegister = useNavigate()
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    if(!user){
+        useEffect ( () => {
+            alert("Sorry ! You need to register first !")
+            navigateToRegister('/')
+        })
+        
+        return <></>
+    }
+
+
     const [loading, setLoading] = useState(true)
     const [movies, setMovies] = useState([])
     const [query, setQuery] = useState('')
